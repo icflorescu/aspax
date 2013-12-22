@@ -1,0 +1,44 @@
+{
+  "name": "aspax",
+  "version": "0.6.0",
+  "description": "The simple Node.js asset packager.",
+  "repository": "git://github.com/icflorescu/aspax",
+  "bin": {
+    "aspax": "./bin/aspax"
+  },
+  "keywords": [
+    "coffee",
+    "iced",
+    "ls",
+    "jade",
+    "less",
+    "stylus",
+    "js",
+    "css",
+    "assets",
+    "compilation",
+    "concatenation",
+    "minification",
+    "fingerprinting",
+    "compression",
+    "gzip",
+    "automation",
+    "workflow"
+  ],
+  "author": {
+    "name": "Ionut-Cristian Florescu",
+    "email": "ionut.florescu@gmail.com",
+    "url": "https://coderwall.com/icflorescu"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~2.1.0",
+    "cli-color": "~0.2.3",
+    "iced-coffee-script": "~1.6.3-i",
+    "js-yaml": "~3.0.0",
+    "fs-tools": "~0.2.10",
+    "gaze": "~0.4.3",
+    "uglify-js": "~2.4.8",
+    "csso": "~1.3.10"
+  }
+}
