@@ -2,26 +2,27 @@
 ASPAX is a simple command-line utility able to watch, compile, concatenate, minify, compress and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
 
 `aspax.yml`:
+```yaml
+js/app.js|fp|min|gz:
+  - lib/bootstrap/js/bootstrap.js
+  - lib/moment.js
+  - lib/jade/runtime.js
+  - scripts/namespaces.coffee|bare
+  - templates/item.jade
+  - scripts/index.ls|bare
 
-    js/app.js|fp|min|gz:
-      - lib/bootstrap/js/bootstrap.js
-      - lib/moment.js
-      - lib/jade/runtime.js
-      - scripts/namespaces.coffee|bare
-      - templates/item.jade
-      - scripts/index.ls|bare
+css/app.css|fp|min|gz:
+  - lib/bootstrap/css/bootstrap.css
+  - lib/bootstrap/css/bootstrap-theme.css
+  - styles/index.styl|nib
 
-    css/app.css|fp|min|gz:
-      - lib/bootstrap/css/bootstrap.css
-      - lib/bootstrap/css/bootstrap-theme.css
-      - styles/index.styl|nib
+favicon.png:               images/favicon.png
 
-    favicon.png:               images/favicon.png
-
-    fonts/bs-glyphs.eot|fp:    lib/bootstrap/fonts/glyphicons-halflings-regular.eot
-    fonts/bs-glyphs.svg|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.svg
-    fonts/bs-glyphs.ttf|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.ttf
-    fonts/bs-glyphs.woff|fp:   lib/bootstrap/fonts/glyphicons-halflings-regular.woff
+fonts/bs-glyphs.eot|fp:    lib/bootstrap/fonts/glyphicons-halflings-regular.eot
+fonts/bs-glyphs.svg|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.svg
+fonts/bs-glyphs.ttf|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.ttf
+fonts/bs-glyphs.woff|fp:   lib/bootstrap/fonts/glyphicons-halflings-regular.woff
+```
 
 That's it. No complicated `.initConfig()`, no redundant code to describe tasks in JavaScript or CoffeeScript.
 
@@ -64,9 +65,11 @@ Each source handler npm should be named 'aspax-xyz-handler', where 'xyz' is the 
 
 Each npm should export a `compile()` method with this signature (see example [here](https://github.com/icflorescu/aspax-coffee-handler/blob/master/plugin.coffee)):
 
-    exports.compile = function(file, flags, callback) {
-      ...
-    };
+```js
+exports.compile = function(file, flags, callback) {
+  ...
+};
+```
 
 ...and optionally a `findImports()` method to recursively find imported/referred files (see examples [here](https://github.com/icflorescu/aspax-less-handler/blob/master/plugin.iced)) and [here](https://github.com/icflorescu/aspax-jade-handler/blob/master/plugin.iced)):
 
