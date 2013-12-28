@@ -1,6 +1,6 @@
 {
   "name": "aspax",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "The simple Node.js asset packager.",
   "repository": "git://github.com/icflorescu/aspax",
   "homepage": "http://aspax.github.io",
@@ -35,7 +35,7 @@
   "dependencies": {
     "commander": "~2.1.0",
     "cli-color": "~0.2.3",
-    "iced-coffee-script": "~1.6.3-i",
+    "iced-coffee-script": "~1.6.3-j",
     "js-yaml": "~3.0.1",
     "fs-tools": "~0.2.10",
     "gaze": "~0.4.3",
