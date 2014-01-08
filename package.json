@@ -21,8 +21,6 @@
     "concatenation",
     "minification",
     "fingerprinting",
-    "compression",
-    "gzip",
     "automation",
     "workflow"
   ],

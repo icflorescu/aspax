@@ -1,9 +1,9 @@
 ## The simple Node.js asset packager
-ASPAX is a simple command-line utility able to watch, compile, concatenate, minify, compress and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
+ASPAX is a simple command-line utility able to watch, compile, concatenate, minify and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
 
 Sample `aspax.yml` config:
 
-    js/app.js|fp|min|gz:
+    js/app.js|fp|min:
       - lib/bootstrap/js/bootstrap.js
       - lib/moment.js
       - lib/jade/runtime.js
@@ -11,17 +11,17 @@ Sample `aspax.yml` config:
       - templates/item.jade
       - scripts/index.ls|bare
 
-    css/app.css|fp|min|gz:
+    css/app.css|fp|min:
       - lib/bootstrap/css/bootstrap.css
       - lib/bootstrap/css/bootstrap-theme.css
       - styles/index.styl|nib
 
-    favicon.png:               images/favicon.png
+    favicon.png:             images/favicon.png
 
-    fonts/bs-glyphs.eot|fp:    lib/bootstrap/fonts/glyphicons-halflings-regular.eot
-    fonts/bs-glyphs.svg|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.svg
-    fonts/bs-glyphs.ttf|fp|gz: lib/bootstrap/fonts/glyphicons-halflings-regular.ttf
-    fonts/bs-glyphs.woff|fp:   lib/bootstrap/fonts/glyphicons-halflings-regular.woff
+    fonts/bs-glyphs.eot|fp:  lib/bootstrap/fonts/glyphicons-halflings-regular.eot
+    fonts/bs-glyphs.svg|fp:  lib/bootstrap/fonts/glyphicons-halflings-regular.svg
+    fonts/bs-glyphs.ttf|fp:  lib/bootstrap/fonts/glyphicons-halflings-regular.ttf
+    fonts/bs-glyphs.woff|fp: lib/bootstrap/fonts/glyphicons-halflings-regular.woff
 
 That's it. No complicated `.initConfig()`, no redundant code to describe tasks in JavaScript or CoffeeScript, just a simple YML file in your assets folder.
 
@@ -29,7 +29,7 @@ By looking at that file, ASPAX will:
 
 - watch the folder and rebuild **just the necessary files** on changes;
 - compile, concatenate and copy files in development mode;
-- compile, concatenate, **minify**, **compress**, **fingerprint** and copy files in production mode.
+- compile, concatenate, **minify**, **fingerprint** and copy files in production mode.
 
 ## Installation
 Most likely you'll want ASPAX installed as a global module:
@@ -87,7 +87,7 @@ Here are just a few CLI usage examples:
     # build for development
     aspax -s ../assets build
 
-    # pack for production (will compile, concat, minify, compress and fingerprint)
+    # pack for production (will compile, concat, minify and fingerprint)
     aspax -s ../assets pack
 
     # clean everything
@@ -108,23 +108,19 @@ Just add the appropriate **flags** after the asset file name (the order is irrel
 
               o-- fingerprint
               |  o---- minify
-              |  |   o-- gzip
-              |  |   |
-              V  V   V
-              -- --- ---
-    js/app.js|fp|min|gz:
+              |  |
+              |  |
+              V  V
+              -- ---
+    js/app.js|fp|min:
       - ...
 
 The **flags** will have no effect in development mode; however, in production:
 
 - marking an asset for fingerprinting will add an UNIX timestamp like `-1387239833024` before its extension;
-- marking an asset for minification will process it with [UglifyJS2](https://github.com/mishoo/UglifyJS2)/[CSS-optimizer](https://github.com/css/csso) and will also add `.min` before the extension;
-- marking an asset for compression will gzip it and also add a `.gz` suffix to its name.
+- marking an asset for minification will process it with [UglifyJS2](https://github.com/mishoo/UglifyJS2)/[CSS-optimizer](https://github.com/css/csso) and will also add `.min` before the extension.
 
-Notes:
-
-- fingerprinting and compression will work for anything, while minification only makes sense for JS and CSS files;
-- there's no point, of course, in trying to compress already compressed formats such as `.jpg`, `.png` or `.eot`.
+Note: fingerprinting will work for anything, while minification only makes sense for JS and CSS files.
 
 ### Plugin flags
 Some source-handling plugins are also accepting **flags** (i.e. `bare` for CoffeeScript files). Use the same syntax:
