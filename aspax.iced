@@ -1,7 +1,6 @@
 fs   = require 'fs'
 util = require 'util'
 path = require 'path'
-zlib = require 'zlib'
 
 yml    = require 'js-yaml'
 clc    = require 'cli-color'
@@ -53,7 +52,6 @@ class AspaX
 
       action      = if ext in ['.js', '.css'] then 'build' else 'copy'
       min         = mode is 'prod' and 'min' in flags
-      gz          = mode is 'prod' and 'gz'  in flags
 
       sources = []
       for source in (if util.isArray src then src else [src])
@@ -64,9 +62,8 @@ class AspaX
       destination += "-#{timestamp}" if mode is 'prod' and 'fp' in flags
       destination += '.min'          if min
       destination += ext
-      destination += '.gz'           if gz
 
-      @config[name] = { action, min, gz, sources, destination }
+      @config[name] = { action, min, sources, destination }
 
     callback()
 
@@ -87,15 +84,6 @@ class AspaX
     for own sourceFile, err of errors when err
       console.log clc.red "error while trying to look for additional watch triggers in #{sourceFile}: ", err
     callback()
-
-  _write: (file, contents, callback) ->
-    dir = path.dirname file
-    await fs.exists dir, defer exists
-    unless exists
-      await ft.mkdir dir, defer err
-      callback err if err
-    await fs.writeFile file, contents, defer err
-    callback err
 
   _getSourceHeader: (sourceFile) ->
     output = "/* -- #{sourceFile} "
@@ -142,24 +130,18 @@ class AspaX
       output = uglify.minify(output, fromString: yes).code if ext is '.js'
       output = csso.justDoIt output                        if ext is '.css'
 
-    if config.gz
-      await zlib.gzip output, defer err, output
-      return callback err if err
-
-    await @_write dst, output, defer err
+    dir = path.dirname dst
+    await fs.exists dir, defer exists
+    unless exists
+      await ft.mkdir dir, defer err
+      callback err if err
+    await fs.writeFile dst, output, defer err
     callback err
 
   _copyAsset: (asset, config, callback) ->
     src = path.resolve @src, config.sources[0].file
     dst = path.resolve @dst, config.destination
-    if config.gz
-      await fs.readFile src, 'utf8', defer err, contents
-      return callback err if err
-      await zlib.gzip contents, defer err, contents
-      return callback err if err
-      await @_write dst, contents, defer err
-    else
-      await ft.copy src, dst, defer err
+    await ft.copy src, dst, defer err
     callback err
 
   watch: ->

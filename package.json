@@ -1,6 +1,6 @@
 {
   "name": "aspax",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "The simple Node.js asset packager.",
   "repository": "git://github.com/icflorescu/aspax",
   "homepage": "http://aspax.github.io",
