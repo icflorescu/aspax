@@ -1,5 +1,4 @@
 ## The simple Node.js asset packager
-
 ASPAX is a simple command-line utility able to watch, compile, concatenate, minify and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
 
 Sample `aspax.yml` config:
