@@ -182,7 +182,7 @@ class AspaX
       process.stdout.write clc.white "#{action}ing #{asset}... "
       await @["_#{action}Asset"] asset, config, defer err
       console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
-      map["#{@pfx}#{asset}"] = "#{@pfx}#{config.destination}"
+      map[asset] = "#{@pfx}#{config.destination}"
     process.stdout.write clc.white "writing #{@out}... "
     contents = if path.extname(@out) is '.yml' then yml.dump(map) else JSON.stringify(map, null, '\t')
     await fs.writeFile @out, contents, defer err
