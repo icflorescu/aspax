@@ -1,6 +1,6 @@
 {
   "name": "aspax",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "The simple Node.js asset packager.",
   "homepage": "http://aspax.github.io",
   "dependencies": {
@@ -28,6 +28,10 @@
     {
       "name": "Jonah Ruiz",
       "email": "jonah@pixelhipsters.com"
+    },
+    {
+      "name": "Eugeny Vlasenko",
+      "email": "mahnunchik@gmail.com"
     }
   ],
   "bin": {
