@@ -1,6 +1,6 @@
 {
   "name": "aspax",
-  "version": "0.7.2",
+  "version": "0.7.4",
   "description": "The simple Node.js asset packager.",
   "homepage": "http://aspax.github.io",
   "dependencies": {
@@ -34,6 +34,7 @@
       "email": "mahnunchik@gmail.com"
     }
   ],
+  "main": "index.js",
   "bin": {
     "aspax": "./bin/aspax"
   },
