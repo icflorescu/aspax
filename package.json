@@ -1,6 +1,6 @@
 {
   "name": "aspax",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "description": "The simple Node.js asset packager.",
   "homepage": "http://aspax.github.io",
   "dependencies": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/icflorescu/aspax.git"
+    "url": "http://github.com/icflorescu/aspax.git"
   },
   "bugs": {
     "url": "https://github.com/icflorescu/aspax/issues"
