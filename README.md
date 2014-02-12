@@ -144,8 +144,8 @@ Some source-handling plugins are also accepting **flags** (i.e. `bare` for Coffe
 ### What's the meaning of the name?
 **AS**set **PA**ckager, and **X** because ASPAX is an evolution of [ASPA](http://github.com/icflorescu/aspa), a similar module I've built in the past.
 
-### So why writing ASPAX instead of just updating [ASPA](http://github.com/icflorescu/aspa)?
-ASPAX brings in some breaking changes by simplifying the YML file syntax and introducing a plugin system to handle various source files. Simply upgrading [ASPA](http://github.com/icflorescu/aspa) wouldn't be possible without annoying the happiness of too many users.
+### So why writing ASPAX instead of just updating ASPA?
+ASPAX brings in some breaking changes by simplifying the YML file syntax and introducing a plugin system to handle various source files. Simply updating ASPA wouldn't have been possible without annoying the happiness of too many users.
 
 ### How long do you plan to maintain ASPAX?
 I'm a strong advocate of open-source philosophy and I'm also using this module in my Node.js projects, so I'll do my best to keep it up to date. If you notice ASPAX has outdated depencencies, most likely there's going to be an update soon.
