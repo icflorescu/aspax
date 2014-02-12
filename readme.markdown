@@ -145,5 +145,14 @@ Some source-handling plugins are also accepting **flags** (i.e. `bare` for Coffe
 ### So why writing ASPAX instead of just updating [ASPA](http://github.com/icflorescu/aspa)?
 ASPAX brings in some breaking changes by simplifying the YML file syntax and introducing a plugin system to handle various source files. Simply upgrading [ASPA](http://github.com/icflorescu/aspa) wouldn't be possible without annoying the happiness of too many users.
 
+### What projects / websites are using assets packaged by ASPAX?
+To name just a few:
+
+- [LeasingSH.ro](http://www.leasingsh.ro);
+- [interiordelight.ro](http://www.interiordelight.ro);
+- [aspax.github.io](http://aspax.github.io) (of course ;-).
+
+If you think your project should be listed here, don't hesitate to [let me know](http://github.com/icflorescu) about it.
+
 ## Endorsing the author
-If you find this piece of software useful, please [![endorse](https://api.coderwall.com/icflorescu/endorsecount.png)](https://coderwall.com/icflorescu) me on Coderwall!
+If you find this piece of software useful, please [tweet about it](http://twitter.com/share?text=Checkout%20ASPAX%2C%20the%20simple%20Node.js%20asset%20packager!&url=http%3A%2F%2Faspax.github.io&hashtags=aspax&via=icflorescu) and/or [![endorse](https://api.coderwall.com/icflorescu/endorsecount.png)](https://coderwall.com/icflorescu) me on Coderwall!
