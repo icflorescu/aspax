@@ -139,6 +139,39 @@ Some source-handling plugins are also accepting **flags** (i.e. `bare` for Coffe
       - scripts/source.coffee|bare
       - ...
 
+### Readability
+You can add any number of whitespaces around semicolons and flag separators for readability. All of the following are equivalent:
+
+- `js/app.js|fp|min:`
+- `js/app.js   |fp|min:`
+- `js/app.js   | fp | min :`
+
+You can also add comments and even format your code like this:
+
+    # Main script
+    js/app.js                             | fp | min :
+      - lib/bootstrap.js
+      - scripts/script-one.coffee | bare
+      - scripts/script-two.coffee | bare
+      - scripts/script-three.ls   | bare
+
+    # Main CSS
+    css/app.css                           | fp | min :
+      - lib/bootstrap.css
+      - styles/style-one.styl     | nib
+      - styles/style-two.coffee   | nib
+      - styles/style-three.ls     | nib
+
+    # Images
+    favicon.png            : images/favicon.png
+    logo.png               : images/logo.png
+
+    # Fonts
+    fonts/glyphs.eot  | fp : lib/fonts/glyphicons-halflings-regular.eot
+    fonts/glyphs.svg  | fp : lib/fonts/glyphicons-halflings-regular.svg
+    fonts/glyphs.ttf  | fp : lib/fonts/glyphicons-halflings-regular.ttf
+    fonts/glyphs.woff | fp : lib/fonts/glyphicons-halflings-regular.woff
+
 ## FAQ
 
 ### What's the meaning of the name?
