@@ -153,23 +153,29 @@ class AspaX
       console.log clc.yellow "#{EOL}exiting..."
       process.exit()
 
-    await gaze "#{@src}/**/*", defer err, watcher
+    await gaze "#{@src}/**/*", { interval: 1000, debounceDelay: 500 }, defer err, watcher
+
+    watcher.on 'error', (e) -> console.log clc.yellow "#{e}... maybe you should restart?..."
+    watcher.on 'added',     -> console.log clc.yellow 'New file detected... maybe you should restart?...'
+    watcher.on 'deleted',   -> console.log clc.yellow 'File delete detected... maybe you should restart?...'
+    watcher.on 'renamed',   -> console.log clc.yellow 'File rename detected... maybe you should restart?...'
+
     watcher.on 'changed', (file) =>
       if file is @configFile
         console.log clc.yellow "#{EOL}#{CONFIG_FILE_BASENAME} changed, restarting...#{EOL}"
         watcher.close()
         @watch()
       else
+        processed = no
         for own asset, config of @config
           for trigger in config.triggers when trigger is file
-            do (asset, config) =>
-              setTimeout =>
-                  await @_buildTriggers asset, config, defer()
-                  process.stdout.write clc.white "#{config.action}ing #{asset}... "
-                  await @["_#{config.action}Asset"] asset, config, defer err
-                  console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
-                , 500
+            await @_buildTriggers asset, config, defer()
+            process.stdout.write clc.white "#{config.action}ing #{asset}... "
+            await @["_#{config.action}Asset"] asset, config, defer err
+            console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
+            processed = yes
             break
+        console.log clc.yellow 'Unhandled file change detected... maybe you should restart?...' unless processed
 
   build: (mode = 'dev', callback) ->
     await @clean defer()
