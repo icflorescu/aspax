@@ -203,8 +203,10 @@ class AspaX
     console.log clc.red 'failed with: ', err if err
     await ft.mkdir @dst, defer err
     console.log clc.red 'failed with: ', err if err
-    await ft.remove @dst, defer err
-    console.log clc.red 'failed with: ', err if err
+    await fs.exists @out, defer exists
+    if exists
+      await fs.unlink @out, defer err
+      console.log clc.red 'failed with: ', err if err
     console.log clc.green 'done...'
     callback() if callback
 
