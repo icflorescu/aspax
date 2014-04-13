@@ -30,7 +30,7 @@ CSS_URL_REGEX = ///
 class AspaX
 
   constructor: (@src, @dst, @pfx, @out) ->
-    @configFile = path.resolve @src, CONFIG_FILE_BASENAME
+    @configFile = path.resolve @src, CONFIG_FILE_BASENAME if @src
 
   _buildConfig: (mode, callback) ->
     timestamp = (new Date).getTime()

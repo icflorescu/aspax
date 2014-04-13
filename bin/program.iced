@@ -20,10 +20,10 @@ action        = if program.args.length then program.args[0] else 'watch'
 actionIsValid = action in ['watch', 'clean', 'build', 'pack']
 outExtIsValid = path.extname(program.out).toLowerCase() in ['.json', '.yml']
 
-if program.src and outExtIsValid and actionIsValid
+if (program.src or action is 'clean') and outExtIsValid and actionIsValid
   aspax(program.src, program.dst, program.pfx, program.out)[action]()
 else
-  console.log clc.red 'Please specify assets source folder.' unless program.src
+  console.log clc.red 'Please specify assets source folder.' unless program.src or action is 'clean'
   console.log clc.red 'Valid output map types are json and yml.' unless actionIsValid
   console.log clc.red 'Valid actions are watch (default if not specified), clean and build.' unless actionIsValid
   console.log 'Check aspax --help for more info.'
