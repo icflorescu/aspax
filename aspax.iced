@@ -4,7 +4,6 @@ path = require 'path'
 
 yml    = require 'js-yaml'
 clc    = require 'cli-color'
-gaze   = require 'gaze'
 ft     = require 'fs-tools'
 uglify = require 'uglify-js'
 csso   = require 'csso'
@@ -30,8 +29,10 @@ CSS_URL_REGEX = ///
 class AspaX
 
   constructor: (@src, @dst, @pfx, @out) ->
+    # We won't have @src in case we're just cleaning stuff...
     @configFile = path.resolve @src, CONFIG_FILE_BASENAME if @src
 
+  # Build config object, depending on mode (dev|prod) and asset flags
   _buildConfig: (mode, callback) ->
     timestamp = (new Date).getTime()
 
@@ -67,6 +68,7 @@ class AspaX
 
     callback()
 
+  # Build triggers for each asset, depending on its source components / imports
   _buildTriggers: (asset, config, callback) ->
     config.triggers = []
     errors = {}
@@ -85,12 +87,14 @@ class AspaX
       console.log clc.red "error while trying to look for additional watch triggers in #{sourceFile}: ", err
     callback()
 
+  # Generate a source header comment
   _getSourceHeader: (sourceFile) ->
     output = "/* -- #{sourceFile} "
     output += '-' for i in [sourceFile.length..109]
     output += " */#{EOL}#{EOL}"
     output
 
+  # Cleverly find and replace fingerprinted assets URLs in CSS files
   _replaceCssUrls: (sourceFile, contents) ->
     contents = contents.replace CSS_URL_REGEX, (all, file, suffix) =>
       absFilePath = path.resolve @src, path.dirname(sourceFile), file
@@ -100,6 +104,7 @@ class AspaX
       all
     contents
 
+  # Build an asset and write the output file in the destination folder
   _buildAsset: (asset, config, callback) ->
     dst    = path.resolve @dst, config.destination
     ext    = path.extname(asset).toLowerCase()
@@ -111,9 +116,11 @@ class AspaX
       sourceFullPath = path.resolve @src, sourceFile
       sourceExt      = path.extname(sourceFile).toLowerCase()
       if sourceExt in ['.js', '.css']
+        # JS & CSS files are simply read
         await fs.readFile sourceFullPath, 'utf8', defer err, contents
         return callback err if err
       else
+        # Look for a specific ASPAX plugin to compile the asset
         try
           plugin = require path.resolve 'node_modules', "aspax-#{sourceExt[1..]}-handler"
         catch err
@@ -121,11 +128,14 @@ class AspaX
         await plugin.compile sourceFullPath, source.flags, defer err, contents
         return callback err if err
 
+      # Adjust URLs in CSS files
       contents = @_replaceCssUrls sourceFile, contents if ext is '.css'
 
+      # Add a header for each asset component; might be helpful for debugging
       output += @_getSourceHeader(sourceFile) + contents
       output += EOL + EOL unless i is last
 
+    # Minimize as needed
     if config.min
       output = uglify.minify(output, fromString: yes).code if ext is '.js'
       output = csso.justDoIt output                        if ext is '.css'
@@ -138,13 +148,19 @@ class AspaX
     await fs.writeFile dst, output, defer err
     callback err
 
+  # Copy an asset from source folder to destination folder
   _copyAsset: (asset, config, callback) ->
     src = path.resolve @src, config.sources[0].file
     dst = path.resolve @dst, config.destination
     await ft.copy src, dst, defer err
     callback err
 
+  # Continuously watch for changes and rebuild as needed
   watch: ->
+    # Gaze must be required here; due to a strange, ambiguous bug in latest gaze,
+    # if we require it on top, our process will not terminate, even if we're not watching
+    gaze = require 'gaze'
+
     await @build 'dev', defer()
     await @_buildTriggers asset, config, defer() for own asset, config of @config
 
@@ -156,9 +172,6 @@ class AspaX
     await gaze "#{@src}/**/*", { interval: 1000, debounceDelay: 500 }, defer err, watcher
 
     watcher.on 'error', (e) -> console.log clc.yellow "#{e}... maybe you should restart?..."
-    watcher.on 'added',     -> console.log clc.yellow 'New file detected... maybe you should restart?...'
-    watcher.on 'deleted',   -> console.log clc.yellow 'File delete detected... maybe you should restart?...'
-    watcher.on 'renamed',   -> console.log clc.yellow 'File rename detected... maybe you should restart?...'
 
     watcher.on 'changed', (file) =>
       if file is @configFile
@@ -166,7 +179,6 @@ class AspaX
         watcher.close()
         @watch()
       else
-        processed = no
         for own asset, config of @config
           for trigger in config.triggers when trigger is file
             await @_buildTriggers asset, config, defer()
@@ -175,8 +187,8 @@ class AspaX
             console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
             processed = yes
             break
-        console.log clc.yellow 'Unhandled file change detected... maybe you should restart?...' unless processed
 
+  # Build assets; mode = dev|prod
   build: (mode = 'dev', callback) ->
     await @clean defer()
     process.stdout.write clc.yellow "loading #{CONFIG_FILE_BASENAME} from #{@src}... "
@@ -195,8 +207,10 @@ class AspaX
     console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
     callback() if callback
 
+  # Build assets for production
   pack: -> @build 'prod'
 
+  # Clean destination folder and output map (aspax.json or aspax.yml)
   clean: (callback) ->
     process.stdout.write clc.yellow "cleaning #{@dst} folder and removing #{@out}... "
     await ft.remove @dst, defer err
