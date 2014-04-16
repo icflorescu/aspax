@@ -4,6 +4,7 @@ path = require 'path'
 
 yml    = require 'js-yaml'
 clc    = require 'cli-color'
+gaze   = require 'gaze'
 ft     = require 'fs-tools'
 uglify = require 'uglify-js'
 csso   = require 'csso'
@@ -157,10 +158,6 @@ class AspaX
 
   # Continuously watch for changes and rebuild as needed
   watch: ->
-    # Gaze must be required here; due to a strange, ambiguous bug in latest gaze,
-    # if we require it on top, our process will not terminate, even if we're not watching
-    gaze = require 'gaze'
-
     await @build 'dev', defer()
     await @_buildTriggers asset, config, defer() for own asset, config of @config
 
@@ -172,6 +169,9 @@ class AspaX
     await gaze "#{@src}/**/*", { interval: 1000, debounceDelay: 500 }, defer err, watcher
 
     watcher.on 'error', (e) -> console.log clc.yellow "#{e}... maybe you should restart?..."
+    watcher.on 'added',     -> console.log clc.yellow 'New file detected... maybe you should restart?...'
+    watcher.on 'deleted',   -> console.log clc.yellow 'File delete detected... maybe you should restart?...'
+    watcher.on 'renamed',   -> console.log clc.yellow 'File rename detected... maybe you should restart?...'
 
     watcher.on 'changed', (file) =>
       if file is @configFile
@@ -179,6 +179,7 @@ class AspaX
         watcher.close()
         @watch()
       else
+        processed = no
         for own asset, config of @config
           for trigger in config.triggers when trigger is file
             await @_buildTriggers asset, config, defer()
@@ -187,6 +188,7 @@ class AspaX
             console.log if err then clc.red 'failed with: ', err else clc.green 'done...'
             processed = yes
             break
+        console.log clc.yellow 'Unhandled file change detected... maybe you should restart?...' unless processed
 
   # Build assets; mode = dev|prod
   build: (mode = 'dev', callback) ->
