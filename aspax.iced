@@ -166,12 +166,12 @@ class AspaX
       console.log clc.yellow "#{EOL}exiting..."
       process.exit()
 
-    await gaze "#{@src}/**/*", { interval: 1000, debounceDelay: 500 }, defer err, watcher
+    await gaze "#{@src}/**/*", { mode: 'poll', interval: 1000, debounceDelay: 500 }, defer err, watcher
 
     watcher.on 'error', (e) -> console.log clc.yellow "#{e}... maybe you should restart?..."
     watcher.on 'added',     -> console.log clc.yellow 'New file detected... maybe you should restart?...'
-    watcher.on 'deleted',   -> console.log clc.yellow 'File delete detected... maybe you should restart?...'
-    watcher.on 'renamed',   -> console.log clc.yellow 'File rename detected... maybe you should restart?...'
+    watcher.on 'deleted',   -> console.log clc.yellow "File delete detected... maybe you should restart?..."
+    watcher.on 'renamed',   -> console.log clc.yellow "File rename detected... maybe you should restart?..."
 
     watcher.on 'changed', (file) =>
       if file is @configFile
