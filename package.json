@@ -1,14 +1,14 @@
 {
   "name": "aspax",
   "preferGlobal": true,
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "The simple Node.js asset packager.",
   "homepage": "http://aspax.github.io",
   "dependencies": {
     "commander": "~2.3.0",
     "cli-color": "~0.3.2",
     "iced-coffee-script": "^1.7.1-f",
-    "js-yaml": "~3.1.0",
+    "js-yaml": "~3.2.2",
     "fs-tools": "~0.2.11",
     "gaze": "~0.6.4",
     "uglify-js": "~2.4.15",
