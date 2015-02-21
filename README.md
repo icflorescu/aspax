@@ -1,7 +1,9 @@
 ![ASPAX - The simple Node.js asset packager](https://raw.github.com/aspax/aspax.github.io/master/assets/img/logo-docs.png)
 ## The simple Node.js asset packager
-[![NPM version](https://badge.fury.io/js/aspax.png)](http://badge.fury.io/js/aspax)
-[![Dependency Status](http://david-dm.org/icflorescu/aspax.png)](http://david-dm.org/icflorescu/aspax)
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 
 ASPAX is a simple command-line utility able to watch, compile, concatenate, minify and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
 
@@ -197,3 +199,12 @@ If you think your project should be listed here, don't hesitate to [let me know]
 If you find this piece of software useful, please [tweet about it](http://twitter.com/share?text=Checkout%20ASPAX%2C%20the%20simple%20Node.js%20asset%20packager!&url=http%3A%2F%2Faspax.github.io&hashtags=aspax&via=icflorescu) and endorse me on LinkedIn:
 
 [![Ionut-Cristian Florescu on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/icflorescu)
+
+[npm-image]: https://img.shields.io/npm/v/aspax.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/aspax
+[david-image]: http://img.shields.io/david/aspax/send.svg?style=flat-square
+[david-url]: https://david-dm.org/aspax/send
+[license-image]: http://img.shields.io/npm/l/aspax.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/aspax.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/aspax
