@@ -202,8 +202,8 @@ If you find this piece of software useful, please [tweet about it](http://twitte
 
 [npm-image]: https://img.shields.io/npm/v/aspax.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/aspax
-[david-image]: http://img.shields.io/david/aspax/send.svg?style=flat-square
-[david-url]: https://david-dm.org/aspax/send
+[david-image]: http://img.shields.io/david/icflorescu/aspax.svg?style=flat-square
+[david-url]: https://david-dm.org/icflorescu/aspax
 [license-image]: http://img.shields.io/npm/l/aspax.svg?style=flat-square
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/aspax.svg?style=flat-square
