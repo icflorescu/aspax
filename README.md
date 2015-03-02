@@ -1,7 +1,9 @@
 ![ASPAX - The simple Node.js asset packager](https://raw.github.com/aspax/aspax.github.io/master/assets/img/logo-docs.png)
 ## The simple Node.js asset packager
-[![NPM version](https://badge.fury.io/js/aspax.png)](http://badge.fury.io/js/aspax)
-[![Dependency Status](http://david-dm.org/icflorescu/aspax.png)](http://david-dm.org/icflorescu/aspax)
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 
 ASPAX is a simple command-line utility able to watch, compile, concatenate, minify and fingerprint web assets by interpreting a simple config file written in clear, human-readable YML syntax:
 
@@ -54,12 +56,12 @@ If you're running ASPAX in a Node.js application root folder, consider using the
 ### Available plugins
 So far, the available plugins are:
 
-- [![NPM version](https://badge.fury.io/js/aspax-coffee-handler.png)](http://badge.fury.io/js/aspax-coffee-handler) [aspax-coffee-handler](http://github.com/icflorescu/aspax-coffee-handler) for [CoffeeScript](http://coffeescript.org);
-- [![NPM version](https://badge.fury.io/js/aspax-iced-handler.png)](http://badge.fury.io/js/aspax-iced-handler) [aspax-iced-handler](http://github.com/icflorescu/aspax-iced-handler) for [IcedCoffeeScript](http://maxtaco.github.io/coffee-script);
-- [![NPM version](https://badge.fury.io/js/aspax-ls-handler.png)](http://badge.fury.io/js/aspax-ls-handler) [aspax-ls-handler](http://github.com/icflorescu/aspax-ls-handler) for [LiveScript](http://livescript.net);
-- [![NPM version](https://badge.fury.io/js/aspax-jade-handler.png)](http://badge.fury.io/js/aspax-jade-handler) [aspax-jade-handler](http://github.com/icflorescu/aspax-jade-handler) for client-side [Jade](http://jade-lang.com) templates;
-- [![NPM version](https://badge.fury.io/js/aspax-styl-handler.png)](http://badge.fury.io/js/aspax-styl-handler) [aspax-styl-handler](http://github.com/icflorescu/aspax-styl-handler) for [Stylus](http://learnboost.github.io/stylus);
-- [![NPM version](https://badge.fury.io/js/aspax-less-handler.png)](http://badge.fury.io/js/aspax-less-handler) [aspax-less-handler](http://github.com/icflorescu/aspax-less-handler) for [LESS](http://lesscss.org).
+- [![NPM version][npm-image-coffee-handler]][npm-url-coffee-handler] [aspax-coffee-handler](http://github.com/icflorescu/aspax-coffee-handler) for [CoffeeScript](http://coffeescript.org);
+- [![NPM version][npm-image-iced-handler]][npm-url-iced-handler] [aspax-iced-handler](http://github.com/icflorescu/aspax-iced-handler) for [IcedCoffeeScript](http://maxtaco.github.io/coffee-script);
+- [![NPM version][npm-image-ls-handler]][npm-url-ls-handler] [aspax-ls-handler](http://github.com/icflorescu/aspax-ls-handler) for [LiveScript](http://livescript.net);
+- [![NPM version][npm-image-jade-handler]][npm-url-jade-handler] [aspax-jade-handler](http://github.com/icflorescu/aspax-jade-handler) for client-side [Jade](http://jade-lang.com) templates;
+- [![NPM version][npm-image-styl-handler]][npm-url-styl-handler] [aspax-styl-handler](http://github.com/icflorescu/aspax-styl-handler) for [Stylus](http://learnboost.github.io/stylus);
+- [![NPM version][npm-image-less-handler]][npm-url-less-handler] [aspax-less-handler](http://github.com/icflorescu/aspax-less-handler) for [LESS](http://lesscss.org).
 
 If you need something else, please let me know and maybe I can do it, or better yet, feel free to do it yourself and notify me so I can list it here.
 
@@ -197,3 +199,25 @@ If you think your project should be listed here, don't hesitate to [let me know]
 If you find this piece of software useful, please [tweet about it](http://twitter.com/share?text=Checkout%20ASPAX%2C%20the%20simple%20Node.js%20asset%20packager!&url=http%3A%2F%2Faspax.github.io&hashtags=aspax&via=icflorescu) and endorse me on LinkedIn:
 
 [![Ionut-Cristian Florescu on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/icflorescu)
+
+[npm-image]: https://img.shields.io/npm/v/aspax.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/aspax
+[david-image]: http://img.shields.io/david/icflorescu/aspax.svg?style=flat-square
+[david-url]: https://david-dm.org/icflorescu/aspax
+[license-image]: http://img.shields.io/npm/l/aspax.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/aspax.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/aspax
+
+[npm-image-coffee-handler]: https://img.shields.io/npm/v/aspax-coffee-handler.svg?style=flat-square
+[npm-url-coffee-handler]: https://npmjs.org/package/aspax-coffee-handler
+[npm-image-iced-handler]: https://img.shields.io/npm/v/aspax-iced-handler.svg?style=flat-square
+[npm-url-iced-handler]: https://npmjs.org/package/aspax-iced-handler
+[npm-image-jade-handler]: https://img.shields.io/npm/v/aspax-jade-handler.svg?style=flat-square
+[npm-url-jade-handler]: https://npmjs.org/package/aspax-jade-handler
+[npm-image-less-handler]: https://img.shields.io/npm/v/aspax-less-handler.svg?style=flat-square
+[npm-url-less-handler]: https://npmjs.org/package/aspax-less-handler
+[npm-image-ls-handler]: https://img.shields.io/npm/v/aspax-ls-handler.svg?style=flat-square
+[npm-url-ls-handler]: https://npmjs.org/package/aspax-ls-handler
+[npm-image-styl-handler]: https://img.shields.io/npm/v/aspax-styl-handler.svg?style=flat-square
+[npm-url-styl-handler]: https://npmjs.org/package/aspax-styl-handler
