@@ -1,5 +1,6 @@
 ![ASPAX - The simple Node.js asset packager](https://raw.github.com/aspax/aspax.github.io/master/assets/img/logo-docs.png)
 ## The simple Node.js asset packager
+[![Project Status][project-status-image]][project-status-url]
 [![NPM version][npm-image]][npm-url]
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
@@ -201,6 +202,8 @@ If you find this piece of software useful, please [tweet about it](http://twitte
 
 [![Ionut-Cristian Florescu on LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/icflorescu)
 
+[project-status-image]: https://stillmaintained.com/icflorescu/aspax.png
+[project-status-url]: https://stillmaintained.com/icflorescu/aspax
 [npm-image]: https://img.shields.io/npm/v/aspax.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/aspax
 [david-image]: http://img.shields.io/david/icflorescu/aspax.svg?style=flat-square
