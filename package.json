@@ -12,7 +12,7 @@
     "fs-tools": "^0.2.11",
     "gaze": "^0.5.2",
     "uglify-js": "^2.6.2",
-    "csso": "^1.5.4"
+    "csso": "^1.6.4"
   },
   "repository": {
     "type": "git",
