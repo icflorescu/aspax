@@ -1,7 +1,7 @@
 {
   "name": "aspax",
   "preferGlobal": true,
-  "version": "1.3.8",
+  "version": "1.3.9",
   "description": "The simple Node.js asset packager.",
   "homepage": "http://aspax.github.io",
   "dependencies": {

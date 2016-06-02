@@ -139,7 +139,7 @@ class AspaX
     # Minimize as needed
     if config.min
       output = uglify.minify(output, fromString: yes).code if ext is '.js'
-      output = csso.minify output                          if ext is '.css'
+      output = csso.minify(output, restructure: no).css    if ext is '.css'
 
     dir = path.dirname dst
     await fs.exists dir, defer exists
