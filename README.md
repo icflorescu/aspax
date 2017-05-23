@@ -1,5 +1,7 @@
 ![ASPAX - The simple Node.js asset packager](https://raw.github.com/aspax/aspax.github.io/master/assets/img/logo-docs.png)
+
 ## The simple Node.js asset packager
+
 [![NPM version][npm-image]][npm-url]
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
@@ -36,6 +38,10 @@ By looking at that file, ASPAX will:
 - watch the folder and rebuild **just the necessary files** on changes;
 - compile, concatenate and copy files in development mode;
 - compile, concatenate, **minify**, **fingerprint** and copy files in production mode.
+
+## Deprecation notice
+
+On May 23rd 2017 I've decided to stop maintaining ASPAX. See the [note below](#how-long-do-you-plan-to-maintain-aspax) for more info.
 
 ## Installation
 Most likely you'll want ASPAX installed as a global module:
@@ -183,7 +189,12 @@ You can also add comments and even format your code like this:
 ASPAX brings in some breaking changes by simplifying the YML file syntax and introducing a plugin system to handle various source files. Simply updating ASPA wouldn't have been possible without annoying the happiness of too many users.
 
 ### How long do you plan to maintain ASPAX?
-I'm a strong advocate of open-source philosophy and I'm also using this module in my Node.js projects, so I'll do my best to keep it up to date. If you notice ASPAX has outdated depencencies, most likely there's going to be an update soon.
+I'm a strong advocate of open-source philosophy ~~and I'm also using this module in my Node.js projects, so I'll do my best to keep it up to date. If you notice ASPAX has outdated dependencies, most likely there's going to be an update soon.~~
+
+A few years have passed since I've released ASPAX. Things have changed since then. The front-end landscape changed significantly. Gulp and Browserify became the _de-facto_ standards for a while, then everyone and their dogs started to use Webpack. Including me.
+
+So I won't be maintaining ASPAX anymore. This is probably the last update (May 23rd, 2017).
+Yet, there are still hunderds on downloads on NPM. So if you're one of the people who badly need it for a legacy project and are willing and ready to take over, don't hesitate to drop me a message.
 
 ### What projects / websites are using assets packaged by ASPAX?
 To name just a few:
