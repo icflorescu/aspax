@@ -41,7 +41,7 @@ By looking at that file, ASPAX will:
 
 ## Deprecation notice
 
-On May 23rd 2017 I've decided to stop maintaining ASPAX. See the [note below](#how-long-do-you-plan-to-maintain-aspax) for more info.
+On May 23rd 2017 I've decided to stop maintaining ASPAX. See the [note below](https://github.com/icflorescu/aspax#how-long-do-you-plan-to-maintain-aspax) for more info.
 
 ## Installation
 Most likely you'll want ASPAX installed as a global module:
